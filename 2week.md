@@ -42,6 +42,7 @@ AWS 프로젝트 2주차
     ```
 
     - 참고 : kubectl 자동완성
+    
     ```
     $ yum install bash-completion   //bash-completion 설치
     $ echo 'source <(kubectl completion bash)' >>~/.bashrc
@@ -110,11 +111,13 @@ AWS 프로젝트 2주차
 
     3) WorkerNode 클러스터 조인
         - AWS IAM Authenticator ConfigMap 다운로드
+
         ```
         curl -o aws-auth-cm.yaml https://amazon-eks.s3.us-west-2.amazonaws.com/cloudformation/2020-05-08/aws-auth-cm.yaml
         ```
 
         - aws-auth-cm.yaml 수정
+
         ```
         apiVersion: v1
         kind: ConfigMap
@@ -131,16 +134,18 @@ AWS 프로젝트 2주차
         ```
 
         - aws-auth-cm.yaml 적용 및 확인
+
         ```
         $ kubectl apply -f aws-auth-cm.yaml
         $ kubectl get node   
         ```         
-        > STATUS가 Ready상태가 되야한다.
+         STATUS가 Ready상태가 되야한다.
 
 ---
 ---
 ### Nginx 서비스 배포
 1. Nginx Deployment yaml 파일 작성
+
     ```
     apiVersion: apps/v1
     kind: Deployment
@@ -166,12 +171,14 @@ AWS 프로젝트 2주차
     ```
 
 2. Nginx Deployment 배포 및 확인
+
     ```
     $ kubectl apply -f nginx-deployment.yaml
     $ kubectl get pods
     ```
 
 3. Nginx Service yaml 파일 작성
+
     ```
     apiVersion: v1
     kind: Service
@@ -189,10 +196,11 @@ AWS 프로젝트 2주차
     ```
 
 4. Nginx Service 배포 및 확인
+
     ```
     $ kubectl apply -f nginx-service.yaml
     $ kubectl get svc
     ```
-확인하면 nginx-service의 TYPE이 LoadBalancer이고 EXTERNAL-IP가 *.ap-northeast-2.elb.amazonaws.com으로 생성된다.
+    확인하면 nginx-service의 TYPE이 LoadBalancer이고 EXTERNAL-IP가 *.ap-northeast-2.elb.amazonaws.com으로 생성된다.
 
-EXTERNAL-IP:80 으로 접속 시 Nginx를 확인
+    EXTERNAL-IP:80 으로 접속 시 Nginx를 확인
